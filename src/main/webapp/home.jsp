@@ -8,7 +8,7 @@
     <title>Travel Viet Nam</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="/TIASM_1_0_SNAPSHOT_war/home.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/home.css">
 
 </head>
 <body class="font-roboto bg-gray-100">
