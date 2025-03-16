@@ -1,0 +1,309 @@
+/* Định dạng chung cho body */
+body {
+    font-family: 'Roboto', sans-serif; /* Sử dụng font Roboto */
+    background-color: #f7fafc; /* Màu nền cho toàn bộ trang */
+}
+
+/* Định dạng phần Header */
+header {
+    background-color: #ffffff; /* Màu nền trắng cho header */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+}
+
+/* Định dạng cho container trong header */
+header .container {
+    display: flex;
+    justify-content: space-between; /* Căn chỉnh các phần tử trong header */
+    align-items: center;
+    padding: 0.5rem 1rem; /* Padding cho phần tử trong header */
+}
+
+/* Định dạng cho text nhỏ trong header */
+header .text-sm {
+    font-size: 0.875rem; /* Cỡ chữ nhỏ */
+}
+
+/* Định dạng cho phần flex trong header */
+header .flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Khoảng cách giữa các phần tử */
+}
+
+/* Định dạng cho phần tìm kiếm */
+header .relative {
+    position: relative;
+}
+
+/* Định dạng cho ô input trong header */
+header input {
+    border: 1px solid #e2e8f0; /* Viền xung quanh input */
+    border-radius: 9999px; /* Bo tròn góc input */
+    padding: 0.25rem 0.75rem; /* Padding cho input */
+    font-size: 0.875rem; /* Cỡ chữ */
+}
+
+/* Định dạng cho nút tìm kiếm trong header */
+header button {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Định dạng cho icon tìm kiếm */
+header button i {
+    font-size: 1rem;
+    color: #4a5568; /* Màu icon tìm kiếm */
+}
+
+/* Định dạng cho các phần có hình ảnh trong main */
+main section.relative {
+    position: relative;
+}
+
+/* Định dạng cho hình ảnh trong phần main */
+main section.relative img {
+    width: 100%;
+    height: 24rem; /* Chiều cao cố định cho hình ảnh */
+    object-fit: cover; /* Đảm bảo ảnh được cắt đầy đủ mà không bị méo */
+}
+
+/* Định dạng cho phần overlay phía trên hình ảnh */
+main section.relative .absolute {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Màu nền đen mờ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff; /* Màu chữ trắng */
+}
+
+/* Định dạng cho các tiêu đề trong phần overlay */
+main section.relative .absolute h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+}
+
+main section.relative .absolute h2 {
+    font-size: 3.75rem;
+    font-weight: 700;
+}
+
+/* Định dạng cho các phần chứa thông tin tour */
+main section.container {
+    margin-top: 2rem;
+    padding: 0 1rem;
+}
+
+/* Định dạng cho phần "Xem thêm tour" */
+main section.container .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Định dạng cho tiêu đề phần tour */
+main section.container .flex h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Định dạng cho các liên kết */
+main section.container .flex a {
+    font-size: 0.875rem;
+    color: #3182ce; /* Màu xanh dương cho liên kết */
+    text-decoration: none;
+}
+
+/* Hiệu ứng hover cho các liên kết */
+main section.container .flex a:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+/* Định dạng cho các phần chứa các tour */
+main section.container .overflow-x-auto {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+}
+
+/* Định dạng cho các khung tour */
+main section.container .overflow-x-auto .bg-white {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ cho khung */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    width: 25rem; /* Chiều rộng cố định */
+}
+
+/* Định dạng cho hình ảnh trong khung tour */
+main section.container .overflow-x-auto .bg-white img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+}
+
+/* Padding cho phần chứa nội dung trong khung */
+main section.container .overflow-x-auto .bg-white .p-4 {
+    padding: 1rem;
+}
+
+/* Định dạng cho flex trong phần chứa nội dung khung */
+main section.container .overflow-x-auto .bg-white .p-4 .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+/* Định dạng cho các tag "Còn Hết hạn" và "New" */
+main section.container .overflow-x-auto .bg-white .p-4 .flex span {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Màu nền cho tag "Còn Hết hạn" */
+main section.container .overflow-x-auto .bg-white .p-4 .flex span.bg-green-500 {
+    background-color: #48bb78;
+    color: #ffffff;
+}
+
+/* Màu nền cho tag "New" */
+main section.container .overflow-x-auto .bg-white .p-4 .flex span.bg-red-500 {
+    background-color: #f56565;
+    color: #ffffff;
+}
+
+/* Định dạng cho tiêu đề tour */
+main section.container .overflow-x-auto .bg-white .p-4 h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* Định dạng cho phần mô tả tour */
+main section.container .overflow-x-auto .bg-white .p-4 p {
+    font-size: 0.875rem;
+}
+
+/* Định dạng cho các phần chứa dịch vụ */
+main section.container .grid {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Cấu trúc lưới cho các dịch vụ */
+main section.container .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+main section.container .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+main section.container .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Định dạng cho mỗi dịch vụ */
+main section.container .bg-white {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ */
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+/* Định dạng cho hình ảnh dịch vụ */
+main section.container .bg-white img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+/* Định dạng cho tiêu đề dịch vụ */
+main section.container .bg-white h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+/* Định dạng cho mô tả dịch vụ */
+main section.container .bg-white p {
+    font-size: 0.875rem;
+}
+
+/* Định dạng cho các phần chứa hình ảnh khách hàng */
+main section.container .flex.items-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Định dạng cho hình ảnh trong phần hài lòng khách hàng */
+main section.container .flex.items-center img {
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: 9999px;
+    margin-right: 1rem;
+}
+
+/* Định dạng cho phần mô tả trong phần hài lòng khách hàng */
+main section.container .flex.items-center div {
+    flex: 1;
+}
+
+/* Tiêu đề trong phần hài lòng khách hàng */
+main section.container .flex.items-center div h4 {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+/* Mô tả trong phần hài lòng khách hàng */
+main section.container .flex.items-center div p {
+    font-size: 0.875rem;
+}
+
+/* Phần footer */
+footer {
+    background-color: #ffffff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ cho footer */
+    margin-top: 2rem;
+    padding: 1rem 0;
+}
+
+/* Định dạng cho container trong footer */
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+/* Định dạng cho text trong footer */
+footer .container p {
+    font-size: 0.875rem;
+}
+
+/* Định dạng cho các liên kết trong footer */
+footer .container .flex {
+    display: flex;
+    gap: 1rem;
+}
+
+footer .container .flex a {
+    font-size: 0.875rem;
+    color: #3182ce;
+    text-decoration: none;
+}
+
+footer .container .flex a:hover {
+    text-decoration: underline; /* Gạch chân khi hover */
+}
