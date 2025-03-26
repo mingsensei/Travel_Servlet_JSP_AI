@@ -1,28 +1,49 @@
 package com.servlet.tiasm.controller;
 
-import com.servlet.tiasm.repository.DestinationDAO;
-import com.servlet.tiasm.repository.HotelDAO;
-import com.servlet.tiasm.model.Destination;
+import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.List;
+
 @WebServlet("/destination")
 public class DestinationServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private DestinationDAO destinationDAO;
-
-    @Override
-    public void init() throws ServletException {
-        destinationDAO = new DestinationDAO();
-    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Destination> destinations = destinationDAO.getAll();
-        request.setAttribute("destinations", destinations);
-        request.getRequestDispatcher("/views/destination.jsp").forward(request, response);
+        String action = request.getParameter("action");
+
+        if (action != null) {
+            switch (action) {
+                case "1":
+                    response.sendRedirect(request.getContextPath() + "/destination/1.jsp");
+                    break;
+                case "2":
+                    response.sendRedirect(request.getContextPath() + "/destination/2.jsp");
+                    break;
+                case "3":
+                    response.sendRedirect(request.getContextPath() + "/destination/3.jsp");
+                    break;
+                default:
+                    response.sendRedirect(request.getContextPath() + "/destination/list.jsp");
+                    break;
+            }
+        } else {
+            response.sendRedirect(request.getContextPath() + "/destination/list.jsp");
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if ("review".equals(action)) {
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String content = request.getParameter("content");
+
+            System.out.println("New Review from " + name + " (" + email + "): " + content);
+
+            response.sendRedirect(request.getContextPath() + "/destination/details.jsp?success=true");
+        }
     }
 }

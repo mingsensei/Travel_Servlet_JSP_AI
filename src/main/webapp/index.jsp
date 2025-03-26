@@ -8,7 +8,7 @@
     <title>Travel Viet Nam</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/home.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/index.css">
 
 </head>
 <body class="font-roboto bg-gray-100">
@@ -18,7 +18,7 @@
 <!-- Phần đầu trang - Header -->
 <header class="bg-white shadow-md">
     <div class="container mx-auto flex justify-between items-center py-2 px-4">
-        <div class="text-sm">Hotline: 1900 6750</div> <!-- Số hotline -->
+        <div class="text-sm">Hotline: 1900 6755</div> <!-- Số hotline -->
         <div class="flex items-center space-x-4">
             <%
                 // Lấy đối tượng user từ session
@@ -46,8 +46,8 @@
 <!-- Phần chính của trang - Main Content -->
 <main>
     <!-- Phần hình ảnh nổi bật - Hero Image Section -->
-    <section class="relative">
-        <img alt="Scenic view of Sapa - Lao Cai" class="w-full h-96 object-cover" src="<%= request.getContextPath() %>/images/main-header-background.jpg"/>
+    <section class="relative" style="background-color: red">
+        <img alt="Scenic view of Sapa - Lao Cai" class="w-full h-96 object-cover" src="<%= request.getContextPath() %>/images/halongbay.jpg"/>
         <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white">
             <h1 class="text-4xl font-bold">Tour du lịch hot</h1>
             <h2 class="text-6xl font-bold">Đà Nẵng - Hội An</h2>
