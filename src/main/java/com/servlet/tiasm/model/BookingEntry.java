@@ -27,6 +27,22 @@ public class BookingEntry {
         this.bookingEndDate = checkOut;
     }
 
+    public BaseModel getService() {
+        return service;
+    }
+
+    public Date getBookingStartDate() {
+        return bookingStartDate;
+    }
+
+    public Date getBookingEndDate() {
+        return bookingEndDate;
+    }
+
+    public LocalDateTime getBookingTime() {
+        return bookingTime;
+    }
+
     public Map<Destination, LocalDateTime> getTourist() {
         Map<Destination, LocalDateTime> desMap = new HashMap<>();
         desMap.put((Destination) service, bookingTime);

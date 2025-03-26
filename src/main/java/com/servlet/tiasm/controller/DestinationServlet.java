@@ -9,41 +9,51 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/destination")
 public class DestinationServlet extends HttpServlet {
+
+    private static final String DESTINATION_PAGE_1 = "/views/destination1.jsp";
+    private static final String DESTINATION_PAGE_2 = "/views/destination2.jsp";
+    private static final String DESTINATION_PAGE_3 = "/views/destination3.jsp";
+    private static final String SUCCESS_PAGE = "/destination/details.jsp?success=true";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
+        String destinationPage = DESTINATION_PAGE_1;  // Default page
         if (action != null) {
             switch (action) {
                 case "1":
-                    response.sendRedirect(request.getContextPath() + "/destination/1.jsp");
+                    destinationPage = DESTINATION_PAGE_1;
                     break;
                 case "2":
-                    response.sendRedirect(request.getContextPath() + "/destination/2.jsp");
+                    destinationPage = DESTINATION_PAGE_2;
                     break;
                 case "3":
-                    response.sendRedirect(request.getContextPath() + "/destination/3.jsp");
+                    destinationPage = DESTINATION_PAGE_3;
                     break;
                 default:
-                    response.sendRedirect(request.getContextPath() + "/destination/list.jsp");
+                    destinationPage = DESTINATION_PAGE_1;
                     break;
             }
-        } else {
-            response.sendRedirect(request.getContextPath() + "/destination/list.jsp");
         }
+
+        request.getRequestDispatcher(destinationPage).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+
         if ("review".equals(action)) {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String content = request.getParameter("content");
 
+            // Log the review for debugging or processing
             System.out.println("New Review from " + name + " (" + email + "): " + content);
 
-            response.sendRedirect(request.getContextPath() + "/destination/details.jsp?success=true");
+            // Redirect to the success page
+            response.sendRedirect(request.getContextPath() + SUCCESS_PAGE);
         }
     }
 }

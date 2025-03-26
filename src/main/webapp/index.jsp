@@ -20,7 +20,7 @@
     <div class="container mx-auto flex justify-between items-center py-2 px-4">
         <div class="text-sm">Hotline: 1900 6755</div> <!-- Số hotline -->
         <div class="flex items-center space-x-4">
-            <%
+           <%
                 // Lấy đối tượng user từ session
                 User user = (User) session.getAttribute("user");
                 if (user != null) {
@@ -30,7 +30,7 @@
             <% } else { %>
             <a class="text-sm" href="<%= request.getContextPath() %>/login">Đăng nhập</a>
             <a class="text-sm" href="<%= request.getContextPath() %>/register">Đăng ký</a>
-            <% } %>
+            <% } %> 
             <a class="text-sm" href="#">Hướng dẫn</a>
             <div class="relative">
                 <input class="border rounded-full py-1 px-3 text-sm" placeholder="Tìm kiếm..." type="text"/>
