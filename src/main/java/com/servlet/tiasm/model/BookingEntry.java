@@ -82,4 +82,20 @@ public class BookingEntry {
     }
     return "unknown";  // Default case if no match is found
 }
+
+    public void setService(BaseModel service) {
+        this.service = service;
+    }
+
+    public void setBookingStartDate(LocalDateTime bookingStartDate) {
+        this.bookingStartDate = bookingStartDate;
+    }
+
+    public void setBookingEndDate(LocalDateTime bookingEndDate) {
+        this.bookingEndDate = bookingEndDate;
+    }
+
+    public void setBookingTime(LocalDateTime bookingTime) {
+        this.bookingTime = bookingTime;
+    }
 }

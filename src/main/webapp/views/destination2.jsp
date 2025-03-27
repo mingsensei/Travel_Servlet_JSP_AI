@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelmng</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/views/destination.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/destination.css">
 </head>
 
 <body>
@@ -139,7 +139,7 @@
 
 
 <%
-    int serviceId = 21; // Bạn có thể lấy serviceId từ request nếu cần
+    int serviceId = 22; // Bạn có thể lấy serviceId từ request nếu cần
     DestinationDAO desDAO = new DestinationDAO();
     BigDecimal price = desDAO.read(serviceId).getPricePerPerson();
 %>

@@ -1,19 +1,18 @@
-<%@page import="com.servlet.tiasm.repository.DestinationDAO"%>
-<%@page import="java.math.BigDecimal"%>
+<%@page import="com.servlet.tiasm.repository.RestaurantDAO"%>
+<!DOCTYPE html><%@page import="java.math.BigDecimal"%>
 <%@page import="com.servlet.tiasm.repository.HotelDAO"%>
-<%@page import="com.servlet.tiasm.model.User"%>
 <%@page import="com.servlet.tiasm.model.BookingEntry"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.servlet.tiasm.model.User"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelmng</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/destination.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/restaurant_03.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 </head>
 
@@ -67,51 +66,33 @@
             </div>
         </div>
     </header>
-    
-    
-
-
 </body>
 <div class="main-container">
     <aside class="sidebar">
         <!-- NEW - Phần Điểm đến nổi bật -->
         <div class="sidebar-section">
-            <h3 class="sidebar-title">Điểm đến nổi bật</h3>
+            <h3 class="sidebar-title">Hotels nổi bật</h3>
 
             <!-- Đà Nẵng -->
             <div class="destination-card">
-                <a href="<%= request.getContextPath() %>/destination?action=1" class="destination-link">
-                    <img src="<%= request.getContextPath() %>/images/danang.jpg" alt="Đà Nẵng" class="destination-image">
+                <a href="<%= request.getContextPath() %>/restaurant?action=1" class="destination-link">
+                    <img src="<%= request.getContextPath() %>/images/khonggianSeaFood.jpg" alt="Saigon Street Eats" class="destination-image">
                     <div class="destination-info">
-                        <h4 class="destination-title">Đà Nẵng</h4>
+                        <h4 class="destination-title">Golden Dragon Seafood</h4>
                         <p class="destination-description">
-                            Thành phố biển với cầu Rồng, Bà Nà Hills và ẩm thực độc đáo
-                        </p>
+                            "Thưởng thức hải sản tươi ngon, đậm đà hương vị rồng vàng."
                     </div>
                 </a>
             </div>
 
             <!-- Hội An -->
             <div class="destination-card">
-                <a href="<%= request.getContextPath() %>/destination?action=3" class="destination-link">
-                    <img src="<%= request.getContextPath() %>/images/hoian.jpg" alt="Hội An" class="destination-image">
+                <a href="<%= request.getContextPath() %>/restaurant?action=2" class="destination-link">
+                    <img src="<%= request.getContextPath() %>/images/HaLongBaySeafoodDelight.jpg" alt="Ha Long Bay" class="destination-image">
                     <div class="destination-info">
-                        <h4 class="destination-title">Hội An</h4>
+                        <h4 class="destination-title">Ha Long Bay Seafood Delight</h4>
                         <p class="destination-description">
-                            Phố cổ di sản thế giới với kiến trúc đèn lồng rực rỡ
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Sai Gon -->
-            <div class="destination-card">
-                <a href="<%= request.getContextPath() %>/destination?action=2" class="destination-link">
-                    <img src="<%= request.getContextPath() %>/images/saigon.jpg" alt="Sai Gon" class="destination-image">
-                    <div class="destination-info">
-                        <h4 class="destination-title">TP Hồ Chí Minh</h4>
-                        <p class="destination-description">
-                            Sài Gòn hoa lệ thủ phủ của miền Nam Việt Nam
+                            "Trải nghiệm hương vị biển cả Hạ Long trong từng món hải sản tinh tế."
                         </p>
                     </div>
                 </a>
@@ -122,28 +103,24 @@
     <!-- Nội dung chính -->
     <main class="main-content">
         <!-- Phần hình ảnh lớn -->
-        <h1>Tại sao phải chọn Đà Nẵng để đi du lịch</h1>
+        <h1>Saigon Street Eats</h1>
         <section class="hero-section">
-            <img src="<%= request.getContextPath() %>/images/danang.jpg" alt="Đà Nẵng" class="main-image">
+            <img src="<%= request.getContextPath() %>/images/SaigonStreetEats.jpg" alt="" class="main-image">
 
             <div class="image-overlay">
-                <h1 class="news-title">Đà Nẵng - Thành phố đáng sống 2024</h1>
+                <h1 class="news-title">Saigon Street Eats-Ăn uống đường phố</h1>
                 <div class="news-meta">
-                    <span>🏆 Top 1 điểm đến yêu thích</span>
-                    <span>🌴 50+ địa điểm check-in</span>
-                    <span>🍜 100+ món ăn đặc sản</span>
-
+                    <span>Sun, 25/02/2018</span>
+                    <span>📍 084511, Hải Châu District, Zone of the Villas of Green Island, Lot A1</span>
                 </div>
 
             </div>
 
             <!-- Box booking -->
-            
-
-<%
-    int serviceId = 21; // Bạn có thể lấy serviceId từ request nếu cần
-    DestinationDAO desDAO = new DestinationDAO();
-    BigDecimal price = desDAO.read(serviceId).getPricePerPerson();
+             <%
+    int serviceId = 12; // Bạn có thể lấy serviceId từ request nếu cần
+    RestaurantDAO resDAO = new RestaurantDAO();
+    BigDecimal price = resDAO.read(serviceId).getPricePerPerson();
 %>
 
 <div class="booking-box">
@@ -155,7 +132,7 @@
     <form action="<%= request.getContextPath() %>/cart" method="post">
         <input type="hidden" name="action" value="add">
         <input type="hidden" name="serviceId" value="<%= serviceId %>">
-        <input type="hidden" name="serviceType" value="destination">
+        <input type="hidden" name="serviceType" value="restaurant">
         <button type="submit" class="booking-button">
             ĐẶT TOUR NGAY
             <span style="display: block; font-size: 14px; margin-top: 5px;">(Ưu đãi 15% hôm nay)</span>
@@ -169,36 +146,33 @@
             });
         });
     </script>
-</div>
-
         </section>
-        <h3>Tại sao Đà Nẵng là điểm đến lý tưởng?</h3>
-        <h4>Thiên đường biển xanh:</h4>
-        <p>Bãi biển Mỹ Khê: Một trong những bãi biển quyến rũ nhất hành tinh,
-        <p>Bán đảo Sơn Trà: Với cảnh quan hùng vĩ,Chùa Linh Ứng và những rặng san hô tuyệt đẹp.</p>
-        <p>Bãi biển Non Nước: Bãi biển yên bình, lý tưởng để thư giãn và tận hưởng không gian riêng tư.</p>
-        <p>Bãi Bụt: Những rặng san hô tuyệt đẹp, lặn biển ngắm san hô.</p>
-        <p>Bãi biển Xuân Thiều: Nổi tiếng với bãi cát đỏ độc đáo.</p>
-        <h4>Khám phá thiên nhiên kỳ vĩ:</h4>
-        <p>Ngũ Hành Sơn: Quần thể núi đá vôi với những hang động huyền bí.</p>
-        <p>Đèo Hải Vân: Cung đường đèo ngoạn mục, nơi giao thoa giữa núi non và biển cả.</p>
-        <p>Hồ xanh Sơn Trà: Vẻ đẹp xanh biếc, không gian yên bình.</p>
-        <p>Rừng dừa Bảy Mẫu: Trải nghiệm đi thuyền thúng, xem biểu diễn thúng chai.</p>
-        <p>Suối Mơ: Không gian mát mẻ, trong lành, vui chơi dưới nước.</p>
-        <p>Khu du lịch sinh thái Tiên Sa: Nhiều hoạt động vui chơi giải trí ngoài trời.</p>
-        <h4>Thưởng thức ẩm thực đặc sắc:</h4>
-        <p>Mì Quảng: Món ăn đặc trưng của Đà Nẵng, với sợi mì dai ngon và nước dùng đậm đà.</p>
-        <p>Hải sản tươi sống: Đà Nẵng là thiên đường của hải sản, với nhiều nhà hàng nổi tiếng.</p>
-        <p>Bún chả cá Đà Nẵng: hương vị đậm đà khó quên.</p>
-        <p>Gỏi cá Nam Ô: Món ăn đặc sản với hương vị độc đáo.</p>
-        <p>Bánh xèo nem lụi: Món ăn vặt hấp dẫn.</p>
-        <h4>Gợi ý lịch trình:</h4>
-        <p>Ngày 1: Khám phá bãi biển Mỹ Khê, tham quan bán đảo Sơn Trà và Chùa Linh Ứng.</p>
-        <p>Ngày 2: Ghé thăm Ngũ Hành Sơn, di chuyển đến Hội An và khám phá phố cổ về đêm.</p>
-        <p>Ngày 3: Đến với Bà Nà Hills, vui chơi và ngắm cảnh từ trên cao.</p>
-        <p>Ngày 4: Thưởng thức những món ăn đặc sản của Đà Nẵng và mua sắm tại chợ Hàn.</p>
-
-
+        <h1>Saigon Street Eats: Hành Trình Khám Phá Hương Vị Đặc Sắc Của Ẩm Thực Việt Nam Và Hải Sản</h1>
+        <h3>Tại sao Golden Dragon Seafood là điểm đến lý tưởng?</h3>
+        <h4>Vị trí thuận tiện:</h4>
+        <p class="text-center">
+            Saigon Street Eats tọa lạc tại trung tâm thành phố, là một điểm hẹn không thể bỏ qua cho những ai yêu thích khám phá hương vị đặc trưng của ẩm thực Việt Nam và hải sản tươi ngon. Với không gian hiện đại nhưng gần gũi, nhà hàng mang đến những món ăn đậm đà bản sắc văn hóa Việt. Các món ăn nổi bật như bún riêu cua, hủ tiếu Sài Gòn, gỏi cuốn tươi mát cùng hải sản tươi ngon như tôm nướng muối ớt, cua rang me, hay hàu sống sốt chanh dây đều khiến thực khách nhớ mãi. Không gian của Saigon Street Eats được thiết kế để mang lại trải nghiệm ăn uống thoải mái và thư giãn, với đội ngũ nhân viên nhiệt tình luôn sẵn sàng phục vụ.</p>
+        <h4>Khám Phá Hương Vị Việt Nam Trong Không Gian Đậm Chất Địa Phương</h4>
+        <p class="text-center">Saigon Street Eats không chỉ là nơi để thưởng thức những món ăn đường phố nổi tiếng của Sài Gòn mà còn mang đến một trải nghiệm đầy mới mẻ với các món hải sản tươi ngon. Mỗi món ăn tại đây đều được chế biến từ nguyên liệu tươi ngon nhất, từ gạo, rau củ, cho đến hải sản, đảm bảo giữ trọn vẹn hương vị tự nhiên. Bạn có thể thưởng thức những món như bún riêu cua nóng hổi, hủ tiếu sợi mềm dai kết hợp với nước dùng ngọt thanh, gỏi cuốn tươi mát cuốn cùng tôm và thịt, hay những món hải sản được chế biến vừa miệng như cua sốt me, tôm nướng muối ớt cay nồng, hay hàu sống sốt chanh dây vừa chua vừa ngọt. Không gian nhà hàng được thiết kế mang đậm dấu ấn văn hóa Việt với những họa tiết truyền thống và nội thất đơn giản nhưng tinh tế, tạo ra một không gian ăn uống thư giãn và dễ chịu.</p>
+        <h4>Top những món hot của quán</h4>
+        <table width="600" style="margin: 0 auto;">
+            <tr>
+                <td align="right" style="padding: 10px;">
+                    <img src="<%= request.getContextPath() %>/images/Bún riêu cua.webp" alt="" style="width: 300px; height: auto; border-radius: 8px;">
+                </td>
+                <td align="center" style="padding: 10px;">
+                    <img src="<%= request.getContextPath() %>/images/Hủ tiếu Sài Gòn.jpg" alt="" style="width: 300px; height: auto; border-radius: 8px;">
+                </td>
+                <td align="left" style="padding: 10px;">
+                    <img src="<%= request.getContextPath() %>/images/Gỏi cuốn tươi mát.jpg" alt="" style="width: 300px; height: auto; border-radius: 8px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="padding: 10px;">Bún riêu cua – Nước dùng ngọt thanh, cua tươi ngon, đậm đà hương vị Sài Gòn.</td>
+                <td align="center" style="padding: 10px;">Hủ tiếu Sài Gòn – Sợi hủ tiếu mềm mịn, nước dùng ngọt dịu, tròn vị đặc trưng.</td>
+                <td align="center" style="padding: 10px;">Gỏi cuốn tươi mát – Tôm, thịt cuốn rau sống, chấm nước mắm chua ngọt.</td>
+            </tr>
+        </table>
         <section class="comment-section">
             <div class="comment-header">
                 <h3>Bình luận của bạn:</h3>
@@ -230,7 +204,7 @@
         <a href="#">Dịch vụ</a>
     </div>
     <div class="footer-content">
-        © 2025 BeeTravel | Cung cấp bởi Sapo
+        © 2025 TravelMng | Cung cấp bởi Sapo
     </div>
 </footer>
 </body>

@@ -3,6 +3,8 @@ package com.servlet.tiasm.repository;
 import com.servlet.tiasm.model.Booking;
 import com.servlet.tiasm.model.BookingEntry;
 import com.servlet.tiasm.model.Customer;
+import com.servlet.tiasm.model.Destination;
+import com.servlet.tiasm.model.Hotel;
 import com.servlet.tiasm.model.Restaurant;
 
 import java.sql.*;
@@ -27,10 +29,10 @@ public class BookingDAO {
     private static final String SELECT_BY_ID_SQL = 
         "SELECT b.bookingId, b.bookingDate, b.totalPrice, " +
         "c.cusId, c.userID, c.cusName, c.cusDoB, c.cusGender, c.cusPhoneNumber, c.cusEmail " +
-        "FROM Booking b JOIN Customer c ON b.customerId = c.cusId WHERE b.bookingId = ?";
+        "FROM Booking b JOIN Customer c ON b.customerId = c.cusId WHERE c.cusId= ?";
 
     private static final String INSERT_BOOKING_SQL = 
-        "INSERT INTO Booking (customerId, bookingDate, totalPrice, userID) VALUES (?, ?, ?, ?)";
+        "INSERT INTO Booking (customerId, bookingDate, totalPrice) VALUES (?, ?, ?)";
 
     private static final String INSERT_BOOKING_ENTRY_SQL = 
         "INSERT INTO BookingEntry (bookingId, serviceType, serviceId, bookingTime, checkIn, checkOut) " +
@@ -55,10 +57,10 @@ public class BookingDAO {
         return bookings;
     }
 
-    public Booking getById(int bookingId) {
+    public Booking getById(int customerId) {
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(SELECT_BY_ID_SQL)) {
-            stmt.setInt(1, bookingId);
+            stmt.setInt(1, customerId);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return mapResultSetToBooking(rs);
@@ -77,7 +79,6 @@ public class BookingDAO {
                 stmt.setInt(1, booking.getCustomer().getCusId());
                 stmt.setTimestamp(2, Timestamp.valueOf(booking.getBookingDate()));
                 stmt.setBigDecimal(3, booking.getTotalPrice());
-                stmt.setInt(4, booking.getCustomer().getUserID());
                 stmt.executeUpdate();
                 
                 try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
@@ -100,7 +101,9 @@ public class BookingDAO {
                 stmt.setInt(1, bookingId);
                 stmt.setString(2, entry.getServiceType());
                 stmt.setInt(3, entry.getService().getTravelId());
-                stmt.setTimestamp(4, entry.getBookingTime() != null ? Timestamp.valueOf(entry.getBookingTime()) : null);
+                stmt.setTimestamp(4, entry.getBookingTime() != null ? 
+                  Timestamp.valueOf(entry.getBookingTime()) : 
+                  Timestamp.valueOf(LocalDateTime.now()));
                 stmt.setTimestamp(5, entry.getBookingStartDate() != null ? Timestamp.valueOf(entry.getBookingStartDate()) : null);
                 stmt.setTimestamp(6, entry.getBookingEndDate() != null ? Timestamp.valueOf(entry.getBookingEndDate()) : null);
                 stmt.addBatch();
@@ -152,4 +155,72 @@ public class BookingDAO {
             rs.getBigDecimal("totalPrice")
         );
     }
+
+public List<BookingEntry> getBookingDetails(int bookingId) {
+    List<BookingEntry> entries = new ArrayList<>();
+    String SELECT_BOOKING_ENTRIES_SQL = 
+        "SELECT be.bookingId, be.serviceType, be.serviceId, be.bookingTime, be.checkIn, be.checkOut " +
+        "FROM BookingEntry be WHERE be.bookingId = ?";
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement stmt = conn.prepareStatement(SELECT_BOOKING_ENTRIES_SQL)) {
+        stmt.setInt(1, bookingId);
+        try (ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                String serviceType = rs.getString("serviceType");
+                BookingEntry entry = null;
+
+                // Map serviceType to appropriate service object
+                if ("restaurant".equalsIgnoreCase(serviceType)) {
+                    // Fetch Restaurant service based on serviceId
+                    Restaurant service = fetchRestaurantById(rs.getInt("serviceId"));
+                    entry = new BookingEntry(service, rs.getTimestamp("bookingTime").toLocalDateTime());
+                } else if ("destination".equalsIgnoreCase(serviceType)) {
+                    // Fetch Destination service based on serviceId
+                    Destination service = fetchDestinationById(rs.getInt("serviceId"));
+                    entry = new BookingEntry(service, rs.getTimestamp("bookingTime").toLocalDateTime());
+                } else if ("hotel".equalsIgnoreCase(serviceType)) {
+                    // Fetch Hotel service based on serviceId
+                    Hotel service = fetchHotelById(rs.getInt("serviceId"));
+                    entry = new BookingEntry(service, 
+                        rs.getTimestamp("checkIn").toLocalDateTime(),
+                        rs.getTimestamp("checkOut").toLocalDateTime());
+                }
+
+                // Set additional attributes
+                if (entry != null) {
+                    entry.setBookingTime(rs.getTimestamp("bookingTime").toLocalDateTime());
+                    entry.setBookingStartDate(rs.getTimestamp("checkIn") != null ? 
+                        rs.getTimestamp("checkIn").toLocalDateTime() : null);
+                    entry.setBookingEndDate(rs.getTimestamp("checkOut") != null ? 
+                        rs.getTimestamp("checkOut").toLocalDateTime() : null);
+                    entries.add(entry);
+                }
+            }
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException("Error retrieving booking details", e);
+    }
+    return entries;
+}
+
+// Helper methods to fetch services by ID
+private Restaurant fetchRestaurantById(int serviceId) {
+    RestaurantDAO rd = new RestaurantDAO();
+    Restaurant rr = rd.read(serviceId);
+    return rr;  // Replace with actual logic
+}
+
+private Destination fetchDestinationById(int serviceId) {
+    DestinationDAO dd = new DestinationDAO();
+    Destination d = dd.read(serviceId);
+    return d;
+}
+
+private Hotel fetchHotelById(int serviceId) {
+    HotelDAO hd = new HotelDAO();
+    Hotel h = hd.read(serviceId);
+    return h;
+}
+
 }

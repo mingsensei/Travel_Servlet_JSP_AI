@@ -103,8 +103,40 @@ public void addToCart(HttpSession session, int serviceId, String serviceType) {
     }
 
     private BigDecimal calculateTotalPrice(List<BookingEntry> cart) {
-        return BigDecimal.valueOf(cart.size() * 100); // Example pricing model
+    BigDecimal totalPrice = BigDecimal.ZERO;  // Khởi tạo tổng giá trị ban đầu là 0
+
+    // Lặp qua tất cả các mục trong giỏ hàng
+    for (BookingEntry entry : cart) {
+        BigDecimal servicePrice = BigDecimal.ZERO;  // Khởi tạo giá của mỗi dịch vụ là 0
+
+        // Lấy giá của từng loại dịch vụ
+        switch (entry.getServiceType().toLowerCase()) {
+            case "destination":
+                Destination destination = (Destination) entry.getService();  // Lấy dịch vụ Destination
+                if (destination != null) {
+                    servicePrice = destination.getPricePerPerson();  // Giả sử rằng Destination có thuộc tính price
+                }
+                break;
+            case "hotel":
+                Hotel hotel = (Hotel) entry.getService();  // Lấy dịch vụ Hotel
+                if (hotel != null) {
+                    servicePrice = hotel.getPricePerPerson();  // Giả sử rằng Hotel có thuộc tính price
+                }
+                break;
+            case "restaurant":
+                Restaurant restaurant = (Restaurant) entry.getService();  // Lấy dịch vụ Restaurant
+                if (restaurant != null) {
+                    servicePrice = restaurant.getPricePerPerson();  // Giả sử rằng Restaurant có thuộc tính price
+                }
+                break;
+        }
+
+        // Cộng giá của dịch vụ vào tổng giá
+        totalPrice = totalPrice.add(servicePrice);
     }
+
+    return totalPrice;  // Trả về tổng giá trị của giỏ hàng
+}
     
 
 }

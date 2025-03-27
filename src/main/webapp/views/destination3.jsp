@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelmng</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/views/destination.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/destination.css">
 </head>
 
 <body>
@@ -79,7 +79,7 @@
 
             <!-- Đà Nẵng -->
             <div class="destination-card">
-                <a href="lamlai.html" class="destination-link">
+                <a href="<%= request.getContextPath() %>/destination?action=1" class="destination-link">
                     <img src="<%= request.getContextPath() %>/images/danang.jpg" alt="Đà Nẵng" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">Đà Nẵng</h4>
@@ -92,7 +92,7 @@
 
             <!-- Hội An -->
             <div class="destination-card">
-                <a href="lamlai3.html" class="destination-link">
+                <a href="request.getContextPath() %>/destination?action=3" class="destination-link">
                     <img src="<%= request.getContextPath() %>/images/hoian.jpg" alt="Hội An" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">Hội An</h4>
@@ -105,7 +105,7 @@
 
             <!-- Sai Gon -->
             <div class="destination-card">
-                <a href="lamlai2.html" class="destination-link">
+                <a href="request.getContextPath() %>/destination?action=2" class="destination-link">
                     <img src="<%= request.getContextPath() %>/images/saigon.jpg" alt="Sai Gon" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">TP Hồ Chí Minh</h4>
@@ -139,7 +139,7 @@
             <!-- Box booking -->
   
 <%
-    int serviceId = 21; // Bạn có thể lấy serviceId từ request nếu cần
+    int serviceId = 27; // Bạn có thể lấy serviceId từ request nếu cần
     DestinationDAO desDAO = new DestinationDAO();
     BigDecimal price = desDAO.read(serviceId).getPricePerPerson();
 %>
