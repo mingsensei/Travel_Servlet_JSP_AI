@@ -7,16 +7,6 @@
 <meta charset="UTF-8">
 <title>Trang chủ</title>
 </head>
-<<<<<<< HEAD
-<body>
-    <h1>Trang chủ</h1>
-    <a href="${pageContext.request.contextPath}/cart">Giỏ hàng</a>
-    <button onclick="location.href='${pageContext.request.contextPath}/cart'">Đi đến giỏ hàng</button><br>
-    <a href="${pageContext.request.contextPath}/hotels">Khách sạn</a>
-    <button onclick="location.href='${pageContext.request.contextPath}/hotels'">Đi đến khách sạn</button><br>
-    <a href="${pageContext.request.contextPath}/destination">Điểm đến</a>
-    <button onclick="location.href='${pageContext.request.contextPath}/destination'">Đi đến điểm đến</button><br>
-=======
 <body class="font-roboto bg-gray-100">
 
 
@@ -236,6 +226,5 @@
         </div>
     </section>
 </main>
->>>>>>> b946e2b (payment)
 </body>
 </html>
