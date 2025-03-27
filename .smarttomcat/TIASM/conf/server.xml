@@ -24,7 +24,11 @@
   <!-- Security listener. Documentation at /docs/config/listeners.html
   <Listener className="org.apache.catalina.security.SecurityListener" />
   -->
+<<<<<<< HEAD
   <!-- APR connector and OpenSSL support using Tomcat Native -->
+=======
+  <!-- OpenSSL support using Tomcat Native -->
+>>>>>>> b946e2b (payment)
   <Listener className="org.apache.catalina.core.AprLifecycleListener" />
   <!-- OpenSSL support using FFM API from Java 22 -->
   <!-- <Listener className="org.apache.catalina.core.OpenSSLLifecycleListener" /> -->
@@ -63,9 +67,14 @@
 
     <!-- A "Connector" represents an endpoint by which requests are received
          and responses are returned. Documentation at :
+<<<<<<< HEAD
          Java HTTP Connector: /docs/config/http.html
          Java AJP  Connector: /docs/config/ajp.html
          APR (HTTP/AJP) Connector: /docs/apr.html
+=======
+         HTTP Connector: /docs/config/http.html
+         AJP  Connector: /docs/config/ajp.html
+>>>>>>> b946e2b (payment)
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector port="8080" protocol="HTTP/1.1"
@@ -82,7 +91,11 @@
                maxParameterCount="1000"
                />
     -->
+<<<<<<< HEAD
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443
+=======
+    <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
+>>>>>>> b946e2b (payment)
          This connector uses the NIO implementation. The default
          SSLImplementation will depend on the presence of the APR/native
          library and the useOpenSSL attribute of the AprLifecycleListener.
@@ -94,12 +107,17 @@
                maxThreads="150" SSLEnabled="true"
                maxParameterCount="1000"
                >
+<<<<<<< HEAD
+=======
+        <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+>>>>>>> b946e2b (payment)
         <SSLHostConfig>
             <Certificate certificateKeystoreFile="conf/localhost-rsa.jks"
                          certificateKeystorePassword="changeit" type="RSA" />
         </SSLHostConfig>
     </Connector>
     -->
+<<<<<<< HEAD
     <!-- Define an SSL/TLS HTTP/1.1 Connector on port 8443 with HTTP/2
          This connector uses the APR/native implementation which always uses
          OpenSSL for TLS.
@@ -120,6 +138,8 @@
         </SSLHostConfig>
     </Connector>
     -->
+=======
+>>>>>>> b946e2b (payment)
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <!--
