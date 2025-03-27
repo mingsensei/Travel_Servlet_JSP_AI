@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class BookingEntry {
     private BaseModel service;
-    private Date bookingStartDate;
-    private Date bookingEndDate;
+    private LocalDateTime bookingStartDate;
+    private LocalDateTime bookingEndDate;
     private LocalDateTime bookingTime;
 
     public BookingEntry(Restaurant service, LocalDateTime bookingTime) {
@@ -21,21 +21,28 @@ public class BookingEntry {
         this.bookingTime = bookingTime;
     }
 
-    public BookingEntry(Hotel service, Date checkIn, Date checkOut) {
+    public BookingEntry(Hotel service, LocalDateTime checkIn, LocalDateTime  checkOut) {
         this.service = service;
         this.bookingStartDate = checkIn;
         this.bookingEndDate = checkOut;
+    }
+
+    public BookingEntry( BaseModel service, LocalDateTime bookingStartDate, LocalDateTime bookingEndDate, LocalDateTime bookingTime) {
+        this.service = service;
+        this.bookingStartDate = bookingStartDate;
+        this.bookingEndDate = bookingEndDate;
+        this.bookingTime = bookingTime;
     }
 
     public BaseModel getService() {
         return service;
     }
 
-    public Date getBookingStartDate() {
+    public LocalDateTime getBookingStartDate() {
         return bookingStartDate;
     }
 
-    public Date getBookingEndDate() {
+    public LocalDateTime getBookingEndDate() {
         return bookingEndDate;
     }
 
@@ -55,14 +62,24 @@ public class BookingEntry {
         return resMap;
     }
 
-    public Map<Hotel, Map<Date, Date>> getHotel() {
+    public Map<Hotel, Map<LocalDateTime, LocalDateTime>> getHotel() {
         if (bookingStartDate == null || bookingEndDate == null) {
             return new HashMap<>();  // Avoid NullPointerException
         }
-        Map<Hotel, Map<Date, Date>> hotelMap = new HashMap<>();
-        Map<Date, Date> bookingDates = new HashMap<>();
+        Map<Hotel, Map<LocalDateTime, LocalDateTime>> hotelMap = new HashMap<>();
+        Map<LocalDateTime, LocalDateTime> bookingDates = new HashMap<>();
         bookingDates.put(bookingStartDate, bookingEndDate);
         hotelMap.put((Hotel) service, bookingDates);
         return hotelMap;
     }
+    public String getServiceType() {
+    if (service instanceof Restaurant) {
+        return "restaurant";
+    } else if (service instanceof Destination) {
+        return "destination";
+    } else if (service instanceof Hotel) {
+        return "hotel";
+    }
+    return "unknown";  // Default case if no match is found
+}
 }

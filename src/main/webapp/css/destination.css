@@ -15,6 +15,15 @@ header {
     justify-content: flex-end;
     align-items: center;
     margin-bottom: 15px;
+    
+}
+.text-sm {
+    margin-right: 15px;
+    color: aliceblue;
+}
+.text-sm:hover {
+    color: rgb(253, 140, 140);
+    text-shadow: 1px 1px 5px rgba(255, 0, 0, 0.6);
 }
 
 .hotline {

@@ -19,7 +19,7 @@ public class DestinationServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        String destinationPage = DESTINATION_PAGE_1;  // Default page
+        String destinationPage = DESTINATION_PAGE_1; // Default page
         if (action != null) {
             switch (action) {
                 case "1":
@@ -50,7 +50,7 @@ public class DestinationServlet extends HttpServlet {
             String content = request.getParameter("content");
 
             // Log the review for debugging or processing
-            System.out.println("New Review from " + name + " (" + email + "): " + content);
+            System.out.println("New Destination Review from " + name + " (" + email + "): " + content);
 
             // Redirect to the success page
             response.sendRedirect(request.getContextPath() + SUCCESS_PAGE);

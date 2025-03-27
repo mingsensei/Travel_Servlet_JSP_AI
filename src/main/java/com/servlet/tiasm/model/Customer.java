@@ -17,74 +17,80 @@ public class Customer  {
     private String cusGender;
     private String cusPhoneNumber;
     private String cusEmail;
+    private int userID;
 
-    public Customer(int  cusId, String cusName, LocalDate cusDoB, String cusGender,
-                    String cusPhoneNumber, String cusEmail) {
+    public Customer(int cusId, String cusName, LocalDate cusDoB, String cusGender, String cusPhoneNumber, String cusEmail, int userID) {
         this.cusId = cusId;
         this.cusName = cusName;
         this.cusDoB = cusDoB;
         this.cusGender = cusGender;
         this.cusPhoneNumber = cusPhoneNumber;
         this.cusEmail = cusEmail;
+        this.userID = userID;
     }
-
 
     public int getCusId() {
         return cusId;
     }
 
-    public void setCusId(int cusId) {
-        this.cusId = cusId;
-    }
-
-
-
     public String getCusName() {
         return cusName;
-    }
-
-    public void setCusName(String cusName) {
-        this.cusName = cusName;
     }
 
     public LocalDate getCusDoB() {
         return cusDoB;
     }
 
-    public void setCusDoB(LocalDate cusDoB) {
-        this.cusDoB = cusDoB;
-    }
-
     public String getCusGender() {
         return cusGender;
-    }
-
-    public void setCusGender(String cusGender) {
-        this.cusGender = cusGender;
     }
 
     public String getCusPhoneNumber() {
         return cusPhoneNumber;
     }
 
-    public void setCusPhoneNumber(String cusPhoneNumber) {
-        this.cusPhoneNumber = cusPhoneNumber;
-    }
-
     public String getCusEmail() {
         return cusEmail;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setCusId(int cusId) {
+        this.cusId = cusId;
+    }
+
+    public void setCusName(String cusName) {
+        this.cusName = cusName;
+    }
+
+    public void setCusDoB(LocalDate cusDoB) {
+        this.cusDoB = cusDoB;
+    }
+
+    public void setCusGender(String cusGender) {
+        this.cusGender = cusGender;
+    }
+
+    public void setCusPhoneNumber(String cusPhoneNumber) {
+        this.cusPhoneNumber = cusPhoneNumber;
     }
 
     public void setCusEmail(String cusEmail) {
         this.cusEmail = cusEmail;
     }
 
-
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     @Override
     public String toString() {
-        return "Customer{" + ", cusId=" + cusId + ", cusName=" + cusName + ", cusDoB=" + cusDoB + ", cusGender=" + cusGender + ", cusPhoneNumber=" + cusPhoneNumber + ", cusEmail=" + cusEmail +'}';
+        return "Customer{" + "cusId=" + cusId + ", cusName=" + cusName + ", cusDoB=" + cusDoB + ", cusGender=" + cusGender + ", cusPhoneNumber=" + cusPhoneNumber + ", cusEmail=" + cusEmail + ", userID=" + userID + '}';
     }
+
+    
 }
 
     

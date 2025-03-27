@@ -28,7 +28,7 @@ public class BookingService implements IBookingService{
     }
 
     @Override
-    public Booking findById(String id) {
+    public Booking findById(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

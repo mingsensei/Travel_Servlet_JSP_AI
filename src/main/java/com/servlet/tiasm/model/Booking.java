@@ -2,6 +2,7 @@ package com.servlet.tiasm.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -12,11 +13,11 @@ public class Booking  {
 
     private int bookingId;
     private Customer customer;
-    private LocalDate bookingDate;
+    private LocalDateTime bookingDate;
     private ArrayList<BookingEntry> entries;
     private BigDecimal totalPrice; // Sử dụng BigDecimal thay vì int
 
-    public Booking(int bookingId, Customer customer, LocalDate bookingDate, ArrayList<BookingEntry> entries, BigDecimal totalPrice) {
+    public Booking(int bookingId, Customer customer, LocalDateTime bookingDate, ArrayList<BookingEntry> entries, BigDecimal totalPrice) {
         this.bookingId = bookingId;
         this.customer = customer;
         this.bookingDate = bookingDate;
@@ -40,11 +41,11 @@ public class Booking  {
         this.customer = customer;
     }
 
-    public LocalDate getBookingDate() {
+    public LocalDateTime getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(LocalDate bookingDate) {
+    public void setBookingDate(LocalDateTime bookingDate) {
         this.bookingDate = bookingDate;
     }
 

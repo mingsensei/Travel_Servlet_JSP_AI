@@ -11,7 +11,7 @@ import java.util.List;
 
 public class HotelDAO implements IHotelDAO {
     private static final String INSERT_SQL = "INSERT INTO Hotel ( hotelAvailableRooms, hotelService, hotelCheckInTime, hotelCheckOutTime) VALUES (?, ?, ?, ?, ?)";
-    private static final String SELECT_BY_ID_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,h.hotelAvailableRooms,h.hotelService,h.hotelCheckInTime,h.hotelCheckOutTime FROM BaseModel b RIGHT JOIN Hotel h ON  h.masterId = b.masterId JOIN dbo.Address a ON a.masterId = h.masterId WHERE  maserId = ?";
+    private static final String SELECT_BY_ID_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,h.hotelAvailableRooms,h.hotelService,h.hotelCheckInTime,h.hotelCheckOutTime FROM BaseModel b RIGHT JOIN Hotel h ON  h.masterId = b.masterId JOIN dbo.Address a ON a.masterId = h.masterId WHERE a. masterId = ?";
     private static final String UPDATE_SQL = "UPDATE Hotel SET hotelAvailableRooms = ?, hotelService = ?, hotelCheckInTime = ?, hotelCheckOutTime = ? WHERE masterId = ?";
     private static final String DELETE_SQL = "DELETE FROM Hotel WHERE masterId = ?";
     private static final String SELECT_ALL_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,h.hotelAvailableRooms,h.hotelService,h.hotelCheckInTime,h.hotelCheckOutTime FROM BaseModel b RIGHT JOIN Hotel h ON  h.masterId = b.masterId JOIN dbo.Address a ON a.masterId = h.masterId";

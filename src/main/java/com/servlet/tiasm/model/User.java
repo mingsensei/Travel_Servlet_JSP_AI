@@ -56,4 +56,10 @@ public class User {
         return createdAt;
     }
     public void setCreatedAt(LocalDateTime createdAt) {}
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", email=" + email + ", passwordHash=" + passwordHash + ", role=" + role + ", createdAt=" + createdAt + '}';
+    }
+    
 }

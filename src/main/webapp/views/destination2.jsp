@@ -1,11 +1,11 @@
-<%-- 
-    Document   : destination_02
-    Created on : 21 thg 3, 2025, 16:09:58
-    Author     : macos
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="com.servlet.tiasm.repository.DestinationDAO"%>
+<%@page import="java.math.BigDecimal"%>
+<%@page import="com.servlet.tiasm.repository.HotelDAO"%>
+<%@page import="com.servlet.tiasm.model.User"%>
+<%@page import="com.servlet.tiasm.model.BookingEntry"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.servlet.tiasm.model.User"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -13,39 +13,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travelmng</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/destination.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/views/destination.css">
 </head>
 
 <body>
     <header>
         <div class="header-top">
-            <div class="hotline">HOTLINE: 1900 6750</div>
+            <%
+                // Get user from session
+                User user = (User) session.getAttribute("user");
+                if (user != null) {
+            %>
+                <!-- If user is logged in -->
+                <span class="text-sm font-bold">Xin chào, <%= user.getEmail() %>!</span>
+                <a class="text-sm text-red-500" href="<%= request.getContextPath() %>/logout">Đăng xuất</a>
+            <%
+                } else {
+            %>
+                <!-- If user is not logged in -->
+                <a class="text-sm" href="<%= request.getContextPath() %>/login">Đăng nhập</a>
+                <a class="text-sm" href="<%= request.getContextPath() %>/register">Đăng ký</a>
+            <%
+                }
+            %>
+            
+            <a class="text-sm" href="<%= request.getContextPath() %>/guide">Hướng dẫn</a>
         </div>
-
+    
         <div class="main-header">
             <div class="logo">
-                <img src="Images/images.jpg" alt="Hotel Logo">
-                <a href="your-target-link.html" class="brand">TravelMng</a> <!-- NEW - Đã chỉnh style -->
+                <img src="<%= request.getContextPath() %>/images.jpeg" alt="Hotel Logo">
+                <a href="<%= request.getContextPath() %>/home" class="brand">TravelMng</a>
             </div>
-
+    
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Destination</a></li>
-                    <li><a href="#">Restaurant</a></li>
-                    <li><a href="#">Hotel</a></li>
-                    <li><a href="#">User</a></li>
-                    <li><a href="#">Booking</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="<%= request.getContextPath() %>/home">Home</a></li>
+                    <li><a href="<%= request.getContextPath() %>/destination">Destination</a></li>
+                    <li><a href="<%= request.getContextPath() %>/restaurant">Restaurant</a></li>
+                    <li><a href="<%= request.getContextPath() %>/hotel">Hotel</a></li>
+                    <li><a href="<%= request.getContextPath() %>/customer">User</a></li>
+                    <li><a href="<%= request.getContextPath() %>/cart">Booking</a></li>
+                    <li><a href="<%= request.getContextPath() %>/contact">Contact</a></li>
                 </ul>
             </nav>
-
+    
             <div class="search-box">
-                <input type="text" placeholder="Tìm kiếm...">
-                <button type="submit">🔍︎</button>
+                <form action="<%= request.getContextPath() %>/search" method="get">
+                    <input type="text" name="query" placeholder="Tìm kiếm...">
+                    <button type="submit">🔍︎</button>
+                </form>
             </div>
         </div>
     </header>
+    
+
 </body>
 <div class="main-container">
     <aside class="sidebar">
@@ -55,8 +77,8 @@
 
             <!-- Đà Nẵng -->
             <div class="destination-card">
-                <a href="lamlai.html" class="destination-link">
-                    <img src="images/danang.jpg" alt="Đà Nẵng" class="destination-image">
+                <a href="<%= request.getContextPath() %>/destination?action=1" class="destination-link">
+                    <img src="<%= request.getContextPath() %>/images/danang.jpg" alt="Đà Nẵng" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">Đà Nẵng</h4>
                         <p class="destination-description">
@@ -68,8 +90,8 @@
 
             <!-- Hội An -->
             <div class="destination-card">
-                <a href="lamlai3.html" class="destination-link">
-                    <img src="images/hoian.jpg" alt="Hội An" class="destination-image">
+                <a href="<%= request.getContextPath() %>/destination?action=3" class="destination-link">
+                    <img src="<%= request.getContextPath() %>/images/hoian.jpg" alt="Hội An" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">Hội An</h4>
                         <p class="destination-description">
@@ -81,8 +103,8 @@
 
             <!-- Sai Gon -->
             <div class="destination-card">
-                <a href="lamlai2.html" class="destination-link">
-                    <img src="Images/saigon.jpg" alt="Sai Gon" class="destination-image">
+                <a href="<%= request.getContextPath() %>/destination?action=2" class="destination-link">
+                    <img src="<%= request.getContextPath() %>/images/saigon.jpg" alt="Sai Gon" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">TP Hồ Chí Minh</h4>
                         <p class="destination-description">
@@ -99,7 +121,7 @@
         <!-- Phần hình ảnh lớn -->
         <h1>Tại sao phải chọn Hồ Chí Minh để đi du lịch</h1>
         <section class="hero-section">
-            <img src="Images/saigon.jpg" alt="Đà Nẵng" class="main-image">
+            <img src="<%= request.getContextPath() %>/images/saigon.jpg" alt="Đà Nẵng" class="main-image">
 
             <div class="image-overlay">
                 <h1 class="news-title">TP Hồ Chí Minh-Sôi động và hấp dẫn</h1>
@@ -113,16 +135,39 @@
             </div>
 
             <!-- Box booking -->
-            <div class="booking-box">
-                <div class="price-tag">
-                    Chỉ từ <br>
-                    <span style="font-size: 36px;">15$</span>
-                </div>
-                <button class="booking-button">
-                    ĐẶT TOUR NGAY
-                    <span style="display: block; font-size: 14px; margin-top: 5px;">(Ưu đãi 15% hôm nay)</span>
-                </button>
-            </div>
+            
+
+
+<%
+    int serviceId = 21; // Bạn có thể lấy serviceId từ request nếu cần
+    DestinationDAO desDAO = new DestinationDAO();
+    BigDecimal price = desDAO.read(serviceId).getPricePerPerson();
+%>
+<div class="booking-box">
+    <div class="price-tag">
+        Chỉ từ <br>
+        <span style="font-size: 36px;"><%= price %>$</span>
+    </div>
+
+    <form action="<%= request.getContextPath() %>/cart" method="post">
+        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="serviceId" value="<%= serviceId %>">
+        <input type="hidden" name="serviceType" value="destination">
+        <button type="submit" class="booking-button">
+            ĐẶT TOUR NGAY
+            <span style="display: block; font-size: 14px; margin-top: 5px;">(Ưu đãi 15% hôm nay)</span>
+        </button>
+    </form>
+        
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("form").addEventListener("submit", function () {
+                this.querySelector("button[type=submit]").disabled = true;
+            });
+        });
+    </script>
+</div>
+
         </section>
         <h3>Tại sao nên chọn Hồ Chí Minh là điểm đến lý tưởng?</h3>
         <h4>Khám phá lịch sử và văn hóa:</h4>

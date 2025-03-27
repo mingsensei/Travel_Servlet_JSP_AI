@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @WebServlet("/bookingServlet")
@@ -45,7 +46,7 @@ public class BookingServlet extends HttpServlet {
         }
 
         // Tạo booking mới
-        Booking booking = new Booking(0, customer, LocalDate.now(), new ArrayList<>(cart), totalPrice);
+        Booking booking = new Booking(0, customer, LocalDateTime.now(), new ArrayList<>(cart), totalPrice);
         
         // Gọi BookingDAO để lưu vào database
         bookingDAO.insert(booking);

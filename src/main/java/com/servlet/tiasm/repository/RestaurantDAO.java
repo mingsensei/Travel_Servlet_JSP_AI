@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RestaurantDAO implements IRestaurantDAO {
     private static final String INSERT_SQL = "INSERT INTO Restaurant (masterId, cuisineType, resOpeningHours, resClosingHours) VALUES (?, ?, ?, ?)";
-    private static final String SELECT_BY_ID_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,r.cuisineType,r.resOpeningHours,r.resClosingHours FROM BaseModel b RIGHT JOIN Restaurant r ON  r.masterId = b.masterId JOIN dbo.Address a ON a.masterId = r.masterId  WHERE masterId = ?";
+    private static final String SELECT_BY_ID_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,r.cuisineType,r.resOpeningHours,r.resClosingHours FROM BaseModel b RIGHT JOIN Restaurant r ON  r.masterId = b.masterId JOIN dbo.Address a ON a.masterId = r.masterId  WHERE a.masterId = ?";
     private static final String UPDATE_SQL = "UPDATE Restaurant SET cuisineType = ?, resOpeningHours = ?, resClosingHours = ? WHERE masterId = ?";
     private static final String DELETE_SQL = "DELETE FROM Restaurant WHERE masterId = ?";
     private static final String SELECT_ALL_SQL = "SELECT b.masterId,b.travelName, a.city,a.district,a.street,a.number,b.travelDescription,b.rating,b.pricePerPerson,b.travelContactPhone,b.travelContactEmail,r.cuisineType,r.resOpeningHours,r.resClosingHours FROM BaseModel b RIGHT JOIN Restaurant r ON  r.masterId = b.masterId JOIN dbo.Address a ON a.masterId = r.masterId ";

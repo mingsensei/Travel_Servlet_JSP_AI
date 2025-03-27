@@ -88,7 +88,7 @@ public class UserDAO implements IUserDAO {
 
     private User mapResultSetToUser(ResultSet rs) throws SQLException {
         return new User(
-                rs.getInt("cusID"),
+                rs.getInt("userId"),
                 rs.getString("email"),
                 rs.getString("passwordHash"),
                 rs.getString("role"),
