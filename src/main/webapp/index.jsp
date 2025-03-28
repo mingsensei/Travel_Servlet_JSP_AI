@@ -50,6 +50,9 @@
                 <li><a href="<%= request.getContextPath() %>/customer">User</a></li>
                 <li><a href="<%= request.getContextPath() %>/cart">Booking</a></li>
                 <li><a href="<%= request.getContextPath() %>/contact">Contact</a></li>
+                <% if (user != null && user.getId() == 1) { %>
+                <li><a href="<%= request.getContextPath() %>/chart">Statistical</a></li>
+                <% } %>
             </ul>
         </nav>
 
