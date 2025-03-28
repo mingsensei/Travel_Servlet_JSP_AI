@@ -92,7 +92,7 @@
 
             <!-- Hội An -->
             <div class="destination-card">
-                <a href="request.getContextPath() %>/destination?action=3" class="destination-link">
+                <a href="<%=request.getContextPath() %>/destination?action=3" class="destination-link">
                     <img src="<%= request.getContextPath() %>/images/hoian.jpg" alt="Hội An" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">Hội An</h4>
@@ -105,7 +105,7 @@
 
             <!-- Sai Gon -->
             <div class="destination-card">
-                <a href="request.getContextPath() %>/destination?action=2" class="destination-link">
+                <a href="<%=request.getContextPath() %>/destination?action=2" class="destination-link">
                     <img src="<%= request.getContextPath() %>/images/saigon.jpg" alt="Sai Gon" class="destination-image">
                     <div class="destination-info">
                         <h4 class="destination-title">TP Hồ Chí Minh</h4>
