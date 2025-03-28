@@ -25,6 +25,12 @@ public class Booking  {
         this.totalPrice = totalPrice;
     }
 
+    public Booking(LocalDateTime bookingDate, BigDecimal totalPrice) {
+        this.bookingDate = bookingDate;
+        this.totalPrice = totalPrice;
+    }
+
+
     public int getBookingId() {
         return bookingId;
     }
